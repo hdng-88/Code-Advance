@@ -80,5 +80,6 @@ class Solution {
 
 			System.out.println("#" + tc + " " + count);
 		}
+		sc.close();
 	}
 }

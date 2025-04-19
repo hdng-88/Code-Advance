@@ -87,5 +87,6 @@ class Solution {
 
 			System.out.println("#" + tc + " " + ans);
 		}
+		sc.close();
 	}
 }
