@@ -37,29 +37,37 @@ class Solution {
 			int xUP, yUP, xDOWN, yDOWN, xLEFT, yLEFT, xRIGHT, yRIGHT;
 			for (int x = 0; x < N; x++) {
 				for (int y = 0; y < N; y++) {
+					//nếu NÓ là 1
 					if (matrix[x][y] == 1) {
 						xUP = x + dx[UP];
 						yUP = y + dy[UP];
+						//nếu điểm trên NÓ là 1
 						if (xUP >= 0 && matrix[xUP][yUP] == 1) {
 							xLEFT = x + dx[LEFT];
 							yLEFT = y + dy[LEFT];
+							//nếu điểm trái của NÓ là 1 thì tạo tam giác số 4
 							if (yLEFT >= 0 && matrix[xLEFT][yLEFT] == 1) {
 								count++;
 							}
+							//nếu điểm phải của NÓ là 1 thì tạo tam giác số 1
 							xRIGHT = x + dx[RIGHT];
 							yRIGHT = y + dy[RIGHT];
 							if (yRIGHT < N && matrix[xRIGHT][yRIGHT] == 1) {
 								count++;
 							}
 						}
+
+						//nếu điểm dưới NÓ là 1
 						xDOWN = x + dx[DOWN];
 						yDOWN = y + dy[DOWN];
 						if (xDOWN < N && matrix[xDOWN][yDOWN] == 1) {
+							//nếu điểm trái của NÓ là 1 thì tạo tam giác số 3
 							xLEFT = x + dx[LEFT];
 							yLEFT = y + dy[LEFT];
 							if (yLEFT >= 0 && matrix[xLEFT][yLEFT] == 1) {
 								count++;
 							}
+							//nếu điểm phải của NÓ là 1 thì tạo tam giác số 2
 							xRIGHT = x + dx[RIGHT];
 							yRIGHT = y + dy[RIGHT];
 							if (yRIGHT < N && matrix[xRIGHT][yRIGHT] == 1) {
