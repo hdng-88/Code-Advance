@@ -6,8 +6,8 @@ import java.util.Scanner;
 class Solution {
 	/*
 	 * mảng dx là để di chuyển lên xuống cột 1 hay 2 hàng. Trong đó:
-	 * số âm là kéo lên
-	 * sô dương là kéo xuống
+	 * số âm là kéo xuống tức là hàng dịch lên
+	 * sô dương là kéo lên tức là hàng dịch xuống
 	 */
 	public static int[] dx = { -1, -2, 1, 2 };
 
