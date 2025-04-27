@@ -44,7 +44,8 @@ public class Main {
             }
 
             count = 0; // đếm số lần nhập sai
-            ans = 0;
+            ans = 0; // kết quả để mặc định là 0 (tức là nhập đúng. Nếu không có sự thay đổi biến này
+                     // tức là mật khẩu nhập đúng hết và không bị sai phím nào)
 
             // duyệt cả dãy số
             for (int i = 0; i < N; i++) {
@@ -78,9 +79,9 @@ public class Main {
                         if (cr >= 0 && cr < 4 && cc >= 0 && cc < 3) {
                             // nếu phím sai đó là phím kề
                             if (check[i] == phimNhap[cr][cc]) {
-                                count++;            // tăng số lần nhập sai lên 1
-                                ans = i + 1;        // gán ans là vị trí phím bị sai
-                                wrongPass = false;  // trả về là false để COI NHƯ đã NHẬP ĐÚNG
+                                count++; // tăng số lần nhập sai lên 1
+                                ans = i + 1; // gán ans là vị trí phím bị sai
+                                wrongPass = false; // trả về là false để COI NHƯ đã NHẬP ĐÚNG
                             }
                         }
                     }
@@ -90,8 +91,8 @@ public class Main {
                 /*
                  * sau khi duyệt xong phần tử đó nếu wrongPass là true (tức là phím đó NHẬP SAI
                  * và KHÔNG KỀ với phím đúng) HOẶC số lần nhập sai lớn hơn 1 thì không cần duyệt
-                 * nữa. trả kết quả là -1 luôn. 
-                 * Còn không thì ta duyệt tới phần từ tiếp theo
+                 * nữa. trả kết quả là -1 luôn.
+                 * Còn không thì ta duyệt tới phần tử tiếp theo
                  */
                 if (wrongPass || count > 1) {
                     ans = -1;
