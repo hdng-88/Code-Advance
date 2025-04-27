@@ -24,7 +24,7 @@ public class Main {
     static int[] origin, check;
 
     public static void main(String[] args) throws FileNotFoundException {
-        System.setIn(new FileInputStream("Array\\src\\KiemTraMatKhau\\input.txt"));
+        System.setIn(new FileInputStream("src\\KiemTraMatKhau\\input.txt"));
 
         Scanner sc = new Scanner(System.in);
 
@@ -32,8 +32,8 @@ public class Main {
         for (int test_case = 1; test_case <= T; test_case++) {
 
             N = sc.nextInt();
-            origin = new int[N];
-            check = new int[N];
+            origin = new int[N]; // dãy mật khẩu đúng
+            check = new int[N]; // dãy mật khẩu nhập vào
 
             for (int i = 0; i < N; i++) {
                 origin[i] = sc.nextInt();
@@ -43,15 +43,22 @@ public class Main {
                 check[i] = sc.nextInt();
             }
 
-            count = 0;
+            count = 0; // đếm số lần nhập sai
             ans = 0;
-            for (int i = 0; i < N; i++) {
-                wrongPass = true;
 
+            // duyệt cả dãy số
+            for (int i = 0; i < N; i++) {
+                wrongPass = true; // kiểm tra số nhập vào sai. Mặc dịnh là true
+
+                // nếu số nhập không sai thì false
                 if (check[i] == origin[i]) {
                     wrongPass = false;
-                } else {
+                }
+                // nếu số nhập sai
+                else {
                     int r = 0, c = 0;
+
+                    // xác định vị trí phím ĐÚNG
                     for (int j = 0; j < 4; j++) {
                         for (int k = 0; k < 3; k++) {
                             if (origin[i] == phimNhap[j][k]) {
@@ -61,22 +68,31 @@ public class Main {
                         }
                     }
 
+                    // kiểm tra xem phím SAI đó có là phím liền kề với phím ĐÚNG không
                     int cr, cc;
+                    // xét 4 phím kề xung quanh
                     for (int j = 0; j < 4; j++) {
                         cr = r + rs[j];
                         cc = c + cs[j];
 
                         if (cr >= 0 && cr < 4 && cc >= 0 && cc < 3) {
-                            if(check[i] == phimNhap[cr][cc]){
-                                count++;
-                                ans = i+1;
-                                wrongPass = false;
+                            // nếu phím sai đó là phím kề
+                            if (check[i] == phimNhap[cr][cc]) {
+                                count++;            // tăng số lần nhập sai lên 1
+                                ans = i + 1;        // gán ans là vị trí phím bị sai
+                                wrongPass = false;  // trả về là false để COI NHƯ đã NHẬP ĐÚNG
                             }
                         }
                     }
 
                 }
 
+                /*
+                 * sau khi duyệt xong phần tử đó nếu wrongPass là true (tức là phím đó NHẬP SAI
+                 * và KHÔNG KỀ với phím đúng) HOẶC số lần nhập sai lớn hơn 1 thì không cần duyệt
+                 * nữa. trả kết quả là -1 luôn. 
+                 * Còn không thì ta duyệt tới phần từ tiếp theo
+                 */
                 if (wrongPass || count > 1) {
                     ans = -1;
                     break;
